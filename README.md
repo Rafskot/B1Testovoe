@@ -17,6 +17,17 @@
 2)Создайте новый проект Django с помощью команды: django-admin startproject myproject  
 3)Перейдите в каталог вашего проекта: cd myproject  
 4)Создайте django приложение: python manage.py startapp main  
+5)Добавьте это приложение в settings.py: 
+INSTALLED_APPS = [
+    'main',
+6)изменить файл urls.py в проекте myproject на  
+from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('main.urls')),
+]  
+7)В проект main скопировать файлы:view.py,models.py,form.py, util.py, forms.py
 ### Часть 2.1
 ### Часть 2.2
 ### Часть 2.3
