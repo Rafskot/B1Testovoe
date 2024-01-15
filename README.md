@@ -16,8 +16,8 @@
 1)Для запуска необоходимо создать проект, устанавливаем Django pip install django  
 2)Создайте новый проект Django с помощью команды: django-admin startproject myproject  
 3)Перейдите в каталог вашего проекта: cd myproject  
-4)Создайте django приложение: python manage.py startapp main  
-5)Добавьте это приложение в settings.py: 
+4)Создайте django приложение: python manage.py startapp main   
+5)Добавьте это приложение в settings.py:  
 INSTALLED_APPS = [
     'main',
 6)изменить файл urls.py в проекте myproject на  
@@ -26,8 +26,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-]  
-7)В проект main скопировать файлы:view.py,models.py,form.py, util.py, forms.py
+]   
+7)В проект main скопировать файлы:view.py,models.py,form.py, util.py, forms.py из папки zadadnie\main  
+8)Создать в проект main новую директорию templates, в ней создать еще одну директорию main, и скопировать туда файлы html  
+9)Примените миграции для создания базы данных: 1)python manage.py makemigrations 2)python manage.py migrate  
 ### Часть 2.1
 ### Часть 2.2
 ### Часть 2.3
