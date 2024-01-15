@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визуализация данных</title>
+</head>
+<body>
+<h2>Название банка</h2>
+<h3>Оборотная ведомость по балансовым счетам</h3>
+<p>за период с 01.01.2016 по 31.12.2016</p>
+<p>по банку</p>
+<br>
+
+{% for class_instance in classes %}
+<p>{{ class_instance.name }}</p>
+
+<!-- Пример для объединения данных из BalanceSheet и EndClass для class_id == class_instance.id -->
+<table border="1">
+    <tr>
+        <th>Б/сч</th>
+        <th>ВХОДЯЩЕЕ САЛЬДО[Актив]</th>
+        <th>ВХОДЯЩЕЕ САЛЬДО[Пассив]</th>
+        <th>ОБОРОТЫ[Дебет]</th>
+        <th>ОБОРОТЫ[Кредит]</th>
+        <th>ИСХОДЯЩЕЕ САЛЬДО[Актив]</th>
+        <th>ИСХОДЯЩЕЕ САЛЬДО[Пассив]</th>
+    </tr>
+
+    {% for balance_sheet in balance_sheets %}
+    {% if balance_sheet.class_id == class_instance.id %}
+    <tr>
+        <!-- Вывод данных по балансовым ведомостям с class_id == class_instance.id -->
+        <td>{{ balance_sheet.value_1 }}</td>
+        <td>{{ balance_sheet.value_2 }}</td>
+        <td>{{ balance_sheet.value_3 }}</td>
+        <td>{{ balance_sheet.value_4 }}</td>
+        <td>{{ balance_sheet.value_5 }}</td>
+        <td>{{ balance_sheet.value_6 }}</td>
+        <td>{{ balance_sheet.value_7 }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+
+    {% for end_class in end_classes %}
+    {% if end_class.class_id == class_instance.id %}
+    <tr>
+        <!-- Вывод данных по EndClass с class_id == class_instance.id -->
+        <td>{{ end_class.value_1 }}</td>
+        <td>{{ end_class.value_2 }}</td>
+        <td>{{ end_class.value_3 }}</td>
+        <td>{{ end_class.value_4 }}</td>
+        <td>{{ end_class.value_5 }}</td>
+        <td>{{ end_class.value_6 }}</td>
+        <td>{{ end_class.value_7 }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+{% endfor %}
+
+
+{% for end_table in end_tables %}
+<table border="1">
+    <tr>
+        <th>Б/сч</th>
+        <th>ВХОДЯЩЕЕ САЛЬДО[Актив]</th>
+        <th>ВХОДЯЩЕЕ САЛЬДО[Пассив]</th>
+        <th>ОБОРОТЫ[Дебет]</th>
+        <th>ОБОРОТЫ[Кредит]</th>
+        <th>ИСХОДЯЩЕЕ САЛЬДО[Актив]</th>
+        <th>ИСХОДЯЩЕЕ САЛЬДО[Пассив]</th>
+    </tr>
+    <tr>
+        <td>{{ end_table.value_1 }}</td>
+        <td>{{ end_table.value_2 }}</td>
+        <td>{{ end_table.value_3 }}</td>
+        <td>{{ end_table.value_4 }}</td>
+        <td>{{ end_table.value_5 }}</td>
+        <td>{{ end_table.value_6 }}</td>
+        <td>{{ end_table.value_7 }}</td>
+
+    </tr>
+</table>
+{% endfor %}
+
+</body>
+</html>
